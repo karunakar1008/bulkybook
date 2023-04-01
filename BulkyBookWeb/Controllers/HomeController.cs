@@ -20,6 +20,8 @@ namespace BulkyBookWeb.Controllers
 
         public IActionResult Privacy()
         {
+            var b = 0;
+            var c = 70/b;
             return View();
         }
 
