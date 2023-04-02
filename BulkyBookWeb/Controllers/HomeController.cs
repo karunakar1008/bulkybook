@@ -15,6 +15,12 @@ namespace BulkyBookWeb.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogTrace("Trace: Home page is loaded");
+            _logger.LogDebug("Debug: Home page is loaded");
+            _logger.LogInformation("Information: Home page is loaded");
+            _logger.LogWarning("Warning: Home page is loaded");
+            _logger.LogError("Error: Home page is loaded");
+            _logger.LogCritical("Critical: Home page is loaded");
             return View();
         }
 
