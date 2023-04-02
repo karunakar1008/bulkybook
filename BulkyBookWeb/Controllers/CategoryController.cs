@@ -43,12 +43,13 @@ namespace BulkyBookWeb.Controllers
             {
                 return NotFound();
             }
-            var category = _db.Categories.Find(id);
-            if (category == null)
+            //var category = _db.Categories.Find(id);
+            var categoryFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+            if (categoryFirst == null)
             {
                 return NoContent();
             }
-            return View(category);
+            return View(categoryFirst);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
