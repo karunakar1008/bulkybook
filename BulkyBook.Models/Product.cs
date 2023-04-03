@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BulkyBook.Models
 {
@@ -42,7 +43,9 @@ namespace BulkyBook.Models
         [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
         //[ValidateNever]
+        [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
 
         [Required]
