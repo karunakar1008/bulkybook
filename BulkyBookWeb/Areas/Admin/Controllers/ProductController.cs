@@ -98,5 +98,15 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             }
             return View(obj);
         }
+
+        #region API calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.ProductRepository.GetAll();
+            return Json(new { data = productList });
+        }
+        #endregion
+
     }
 }
