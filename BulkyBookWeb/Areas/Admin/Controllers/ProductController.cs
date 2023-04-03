@@ -67,11 +67,11 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string wwRottPath = _webHostEnvironment.WebRootPath;
+                string wwRottPath = _webHostEnvironment.WebRootPath; //get wwww root path
                 if (file != null)
                 {
-                    string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(wwRottPath, @"images\products");
+                    string fileName = Guid.NewGuid().ToString(); //Unique file name while uploading
+                    var uploads = Path.Combine(wwRottPath, @"images\products"); //get full path to upload images
                     var extension = Path.GetExtension(file.FileName);
                     if (obj.Product.ImageUrl != null)
                     {
