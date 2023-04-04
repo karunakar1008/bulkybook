@@ -14,7 +14,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult LoggingOrder()
         {
             _logger.LogTrace("Trace: Home page is loaded");
             _logger.LogDebug("Debug: Home page is loaded");
