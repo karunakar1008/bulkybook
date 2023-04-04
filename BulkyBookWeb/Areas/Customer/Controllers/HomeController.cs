@@ -1,4 +1,5 @@
-﻿using BulkyBook.Models;
+﻿using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,13 +9,31 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
+        {
+            var productList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category,CoverType");
+            return View(productList);
+        }
+
+        public IActionResult Details(int productId)
+        {
+            ShoppingCart cartObject = new()
+            {
+                Count = 1,
+                ProductId = productId,
+                Product = _unitOfWork.ProductRepository.GetFirstOrDefault(filter: u => u.Id == productId, includeProperties: "Category,CoverType")
+            };
+            return View(cartObject);
+        }
+
+        public IActionResult LoggingOrder()
         {
             _logger.LogTrace("Trace: Home page is loaded");
             _logger.LogDebug("Debug: Home page is loaded");
