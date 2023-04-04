@@ -22,6 +22,17 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             return View(productList);
         }
 
+        public IActionResult Details(int productId)
+        {
+            ShoppingCart cartObject = new()
+            {
+                Count = 1,
+                ProductId = productId,
+                Product = _unitOfWork.ProductRepository.GetFirstOrDefault(filter: u => u.Id == productId, includeProperties: "Category,CoverType")
+            };
+            return View(cartObject);
+        }
+
         public IActionResult LoggingOrder()
         {
             _logger.LogTrace("Trace: Home page is loaded");
