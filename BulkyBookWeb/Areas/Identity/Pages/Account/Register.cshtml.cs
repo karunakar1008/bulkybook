@@ -98,7 +98,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (await _roleManager.RoleExistsAsync(SD.Role_Admin))
+            if (!await _roleManager.RoleExistsAsync(SD.Role_Admin))
             {
                 await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
                 await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
